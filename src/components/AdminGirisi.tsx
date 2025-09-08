@@ -1,4 +1,4 @@
-// src/components/AdminGirisi.tsx  — KOPYALA/DEĞİŞTİR
+
 import React, { useState } from 'react';
 
 const AdminGiris: React.FC = () => {
@@ -7,11 +7,9 @@ const AdminGiris: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: Backend doğrulama burada yapılacak
     alert(`Yönetici Girişi (demo)\nKullanıcı: ${kullanici}`);
   };
 
-  // ÜyeGirişi ile aynı kart ve input stili
   const card: React.CSSProperties = {
     border: '1px solid #e5e7eb',
     background: '#f7f8fa',
@@ -30,13 +28,12 @@ const AdminGiris: React.FC = () => {
     outline: 'none',
     fontSize: 14,
   };
-  // ÜyeGirişi ile aynı: oval/pill buton
   const submitBtn: React.CSSProperties = {
     width: '100%',
     padding: '12px 14px',
     borderRadius: 9999,
     border: 'none',
-    background: '#10b981',
+    background: '#0056a6',
     color: '#04160f',
     fontWeight: 700,
     cursor: 'pointer',

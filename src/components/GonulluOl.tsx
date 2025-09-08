@@ -16,7 +16,7 @@ export default function GonulluOl() {
     borderRadius: '9999px',
     border: 'none',
     outline: 'none',
-    background: '#51796cff',
+    background: '#6b7280',
     color: '#ffffffff',
     fontWeight: 700,
     cursor: 'pointer',
@@ -125,7 +125,6 @@ export default function GonulluOl() {
                 Kişisel verilerimin kullanılmasını onaylıyorum.
               </Label>
             </FormGroup>
-{/*bu kısmın altı gerekli yeterlilik sağlanmadıysa bu formu onaya göndermiyor*/}
             <div className="d-flex gap-2">
               <button type="submit" className="btn btn-primary" disabled={!kvkk || under18}>
                 Gönder

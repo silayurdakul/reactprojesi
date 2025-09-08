@@ -1,7 +1,6 @@
-
 import React, { useState } from 'react';
-import UyeGiris from './components/UyeGirisi';
-import AdminGiris from './components/AdminGirisi';
+import UyeGirisi from './components/UyeGirisi';
+import AdminGirisi from './components/AdminGirisi';
 import GonulluOl from './components/GonulluOl';
 import BagisYap from './components/BagisYap';
 import Haberler from './components/Haberler';
@@ -9,7 +8,7 @@ import Duyurular from './components/Duyurular';
 
 function App() {
   const [sayfa, setSayfa] = useState<
-    'anasayfa' | 'uye' | 'admin' | 'haberler' | 'duyurular' | 'bagis'
+    'anasayfa' | 'uye' | 'admin' | 'haberler' | 'duyurular' | 'bagis' | 'odeme'
   >('anasayfa');
 
   const pillBtn: React.CSSProperties = {
@@ -18,8 +17,8 @@ function App() {
     borderRadius: '9999px',
     border: 'none',
     outline: 'none',
-    background: '#10b981',
-    color: '#04160f',
+    background: '#0056a6',
+    color: '#fff',
     fontWeight: 700,
     cursor: 'pointer',
     WebkitAppearance: 'none',
@@ -34,65 +33,91 @@ function App() {
   };
 
   return (
-    <div style={{ padding: 20, minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+
       <header
         style={{
           display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          padding: '10px 0',
+          flexDirection: 'column',
+          gap: '10px',
+          padding: '20px',
+          backgroundColor: '#e6f0f7',
         }}
       >
-        <h1
+        <div
           style={{
-            margin: 0,
-            fontFamily: '"Poppins", system-ui, Segoe UI, Roboto, Arial, sans-serif',
-            fontWeight: 800,
-            letterSpacing: '0.2px',
-            cursor: 'pointer',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
           }}
-          onClick={() => setSayfa('anasayfa')}
         >
-          AfetDestek
-        </h1>
+          <h1
+            style={{
+              margin: 0,
+              fontFamily: '"Poppins", system-ui, Segoe UI, Roboto, Arial, sans-serif',
+              fontWeight: 800,
+              letterSpacing: '0.2px',
+              cursor: 'pointer',
+              color: '#001f4d',
+            }}
+            onClick={() => setSayfa('anasayfa')}
+          >
+            AfetDestek.org
+          </h1>
 
-        <nav style={{ display: 'flex', gap: 10 }}>
-          <button style={ghostBtn} onClick={() => setSayfa('haberler')}>Haberler</button>
-          <button style={ghostBtn} onClick={() => setSayfa('duyurular')}>Duyurular</button>
-          <button style={ghostBtn} onClick={() => setSayfa('bagis')}>Bağış Yap</button>
-        </nav>
+          <nav style={{ display: 'flex', gap: 10 }}>
+            <button style={ghostBtn} onClick={() => setSayfa('haberler')}>
+              Haberler
+            </button>
+            <button style={ghostBtn} onClick={() => setSayfa('duyurular')}>
+              Duyurular
+            </button>
+            <button style={ghostBtn} onClick={() => setSayfa('bagis')}>
+              Bağış Yap
+            </button>
+          </nav>
 
-        <div style={{ display: 'flex', gap: 10 }}>
-          <button style={pillBtn} onClick={() => setSayfa('uye')}>Üye Girişi</button>
-          <GonulluOl />
-        </div>
-      </header>
-      <main style={{ flex: 1, paddingTop: 10 }}>
-        {sayfa === 'anasayfa' && (
-          <div style={{ color: '#555' }}>
-            <h2>Birlikte Daha Güçlüyüz!</h2>
+          <div style={{ display: 'flex', gap: 10 }}>
+            <button style={pillBtn} onClick={() => setSayfa('uye')}>
+              Üye Girişi
+            </button>
+            <GonulluOl />
           </div>
-        )}
+        </div>
 
+        {sayfa === 'anasayfa' && (
+          <p style={{ margin: 0, color: '#333' }}>Birlikte Daha Güçlüyüz!</p>
+        )}
+      </header>
+
+      <main style={{ flex: 1, padding: 20 }}>
+        {sayfa === 'anasayfa' && <p>Hoş geldiniz!</p>}
         {sayfa === 'haberler' && <Haberler />}
         {sayfa === 'duyurular' && <Duyurular />}
-        {sayfa === 'bagis' && <BagisYap />}
+        {sayfa === 'bagis' && <BagisYap setSayfa={setSayfa} />}
+        {sayfa === 'odeme' && <p>Bağışınız başarıyla alınmıştır, teşekkür ederiz.</p>}
 
         {sayfa === 'uye' && (
           <>
-            <button onClick={() => setSayfa('anasayfa')} style={{ ...ghostBtn, marginBottom: 20 }}>
+            <button
+              onClick={() => setSayfa('anasayfa')}
+              style={{ ...ghostBtn, marginBottom: 20 }}
+            >
               ← Geri
             </button>
-            <UyeGiris />
+            <UyeGirisi />
           </>
         )}
 
         {sayfa === 'admin' && (
           <>
-            <button onClick={() => setSayfa('anasayfa')} style={{ ...ghostBtn, marginBottom: 20 }}>
+            <button
+              onClick={() => setSayfa('anasayfa')}
+              style={{ ...ghostBtn, marginBottom: 20 }}
+            >
               ← Geri
             </button>
-            <AdminGiris />
+            <AdminGirisi />
           </>
         )}
       </main>

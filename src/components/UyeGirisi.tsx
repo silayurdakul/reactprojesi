@@ -63,7 +63,7 @@ const UyeGiris: React.FC = () => {
             padding: '12px 14px',
             borderRadius: 9999,      
             border: 'none',
-            background: '#10b981',
+            background: '#0056a6',
             color: '#04160f',
             fontWeight: 700,
             cursor: 'pointer',
