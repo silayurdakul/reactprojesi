@@ -10,6 +10,7 @@ export default function KartFormu({ odemeBasla }: Props) {
   const [sonKullanma, setSonKullanma] = useState("");
   const [cvv, setCvv] = useState("");
 
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (kartNumarasi.length < 16 || cvv.length !== 3) {
