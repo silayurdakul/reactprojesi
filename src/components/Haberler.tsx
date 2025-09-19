@@ -10,7 +10,7 @@ type Haber = {
   resim_yolu: string | null;
 };
 
-export default function Haberler() {
+export default function Haberler({ limit }: { limit?: number }) {
   const [haberler, setHaberler] = useState<Haber[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -19,14 +19,14 @@ export default function Haberler() {
       .then((res) => res.json())
       .then((data) => {
         const filtrelenmis = data.filter((h: Haber) => h.tip === "haber");
-        setHaberler(filtrelenmis);
+        setHaberler(limit ? filtrelenmis.slice(0, limit) : filtrelenmis);
         setLoading(false);
       })
       .catch((err) => {
         console.error("Haberler alınamadı:", err);
         setLoading(false);
       });
-  }, []);
+  }, [limit]);
 
   if (loading) return <p>Haberler yükleniyor...</p>;
   if (haberler.length === 0) return <p>Henüz haber eklenmemiştir.</p>;

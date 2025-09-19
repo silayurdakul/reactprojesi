@@ -34,7 +34,6 @@ function App() {
 
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
-
       <header
         style={{
           display: 'flex',
@@ -90,8 +89,75 @@ function App() {
         )}
       </header>
 
+      {/* ----------------- MAIN CONTENT ----------------- */}
       <main style={{ flex: 1, padding: 20 }}>
-        {sayfa === 'anasayfa' && <p>Hoş geldiniz!</p>}
+        {sayfa === 'anasayfa' && (
+          <>
+            {/* Bağış Çağrısı Banner */}
+            <section
+              style={{
+                background: '#0056a6',
+                color: '#fff',
+                textAlign: 'center',
+                padding: '40px 20px',
+                borderRadius: '12px',
+                marginBottom: 40,
+              }}
+            >
+              <h2 style={{ fontSize: 28, marginBottom: 10 }}>
+                Bağışlarınızla Hayat Kurtarabilirsiniz 💙
+              </h2>
+              <p style={{ fontSize: 16, marginBottom: 20 }}>
+                Afet bölgelerindeki ihtiyaç sahiplerine destek olmak için siz de katkıda bulunun.
+              </p>
+              <button style={pillBtn} onClick={() => setSayfa('bagis')}>
+                Hemen Bağış Yap
+              </button>
+            </section>
+
+            {/* İstatistikler Bölümü */}
+            <section
+              style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))',
+                gap: '20px',
+                marginBottom: 40,
+              }}
+            >
+              {[
+                { label: 'Gönüllü', value: '10.000+' },
+                { label: 'Bağış', value: '250.000₺' },
+                { label: 'Şehirde Destek', value: '50+' },
+              ].map((stat) => (
+                <div
+                  key={stat.label}
+                  style={{
+                    background: '#f3f4f6',
+                    padding: '20px',
+                    borderRadius: '10px',
+                    textAlign: 'center',
+                  }}
+                >
+                  <h3 style={{ margin: 0, color: '#001f4d', fontSize: 24 }}>{stat.value}</h3>
+                  <p style={{ margin: 0, color: '#444' }}>{stat.label}</p>
+                </div>
+              ))}
+            </section>
+
+            {/* Son Haberler */}
+            <section style={{ marginBottom: 40 }}>
+              <h3 style={{ color: '#0056a6' }}>Son Haberler</h3>
+              <Haberler />
+            </section>
+
+            {/* Son Duyurular */}
+            <section>
+              <h3 style={{ color: '#0056a6' }}>Son Duyurular</h3>
+              <Duyurular />
+            </section>
+          </>
+        )}
+
         {sayfa === 'haberler' && <Haberler />}
         {sayfa === 'duyurular' && <Duyurular />}
         {sayfa === 'bagis' && <BagisYap setSayfa={setSayfa} />}
@@ -121,6 +187,7 @@ function App() {
           </>
         )}
       </main>
+      {/* ----------------- MAIN CONTENT END ----------------- */}
 
       <footer
         style={{

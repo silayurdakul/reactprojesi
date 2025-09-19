@@ -9,7 +9,7 @@ interface Etkinlik {
   resim_yolu?: string | null;
 }
 
-const Duyurular: React.FC = () => {
+const Duyurular: React.FC<{ limit?: number }> = ({ limit }) => {
   const [duyurular, setDuyurular] = useState<Etkinlik[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -18,14 +18,14 @@ const Duyurular: React.FC = () => {
       .then((res) => res.json())
       .then((data: Etkinlik[]) => {
         const onlyDuyurular = data.filter((item) => item.tip === "duyuru");
-        setDuyurular(onlyDuyurular);
+        setDuyurular(limit ? onlyDuyurular.slice(0, limit) : onlyDuyurular);
         setLoading(false);
       })
       .catch((err) => {
         console.error("Hata:", err);
         setLoading(false);
       });
-  }, []);
+  }, [limit]);
 
   if (loading) return <p>Duyurular yükleniyor...</p>;
 
